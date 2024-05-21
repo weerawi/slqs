@@ -26,8 +26,8 @@ const Layout = (props) => {
         <style>
         {`
             ::selection {
-            color: black;
-            background-color: cyan;
+            color: white;
+            background-color: maroon;
             }
         `}
         </style>
