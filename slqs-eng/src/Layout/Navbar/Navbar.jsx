@@ -32,7 +32,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-transparent  text-white z-10 relative">
+    <nav className="bg-white  text-red-900 z-10 relative"
+    style={{ 
+      boxShadow: " rgba(10, 37, 64, 0.35) 0px -4px 10px 0px inset",
+    }}
+    >
       <div className="flex items-center font-medium justify-around">
         <div className="z-50 p-5 md:w-auto w-full flex justify-between">
             <Link to="/"  >

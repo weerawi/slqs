@@ -3,10 +3,15 @@ import Aboutcard from '../Components/Aboutcard'
 import mission from '../Components/Assets/mission.jpg'
 import vision from '../Components/Assets/vision.jpg'
 import brief from '../Components/Assets/brief.jpg'
- 
+import PageTitle from '../Components/PageTitle'
+import aboutimg from '../Components/Assets/top_sun.jpg'
 
 const Aboutus = () => {
   return (
+    <>
+
+    <PageTitle name="About us" image={aboutimg}/>
+    
     <div 
      className='pt-20 pb-32 lg:h-screen   grid lg:grid-flow-col grid-flow-row
       justify-center items-center xl:gap-28 gap-16'> 
@@ -36,6 +41,8 @@ const Aboutus = () => {
       
 
     </div>
+    </>
+    
   )
 }
 

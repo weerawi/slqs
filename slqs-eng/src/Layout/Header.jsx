@@ -38,24 +38,20 @@ const Header = () => {
 
     style={{
         backdropFilter: 'blur(10px)',
-        background: !isScrolled || !isFixed ? 'rgba(130, 3, 0, 0.8)' : 'rgba(130, 0, 0, 0.5)',
+
         borderBottom: !isScrolled || !isFixed ? '1px solid rgba(255, 255, 255, 0.45)' : '1px solid rgba(255, 255, 255, 0.25) ',
+        
         transition: "background 0.5s ease-in-out",
         position: isFixed ? 'fixed' : 'relative',
         // top: isFixed ? '0' : 'auto', 
         // height: '4.5rem',
         zIndex:100,
-        width: '100%',
-        boxShadow: 'inset 0px 2px 10px 0px rgba(255,255,255,0.3)'
+        width: '100%', 
       }}
     
     >
-      <section
-      className="     bg-cover bg-no-repeat 
-      font-[Poppins] md:bg-top bg-center"
-    >
-      <Navbar /> 
-    </section>
+       
+      <Navbar />  
     </header>
   )
 }

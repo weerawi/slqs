@@ -19,7 +19,10 @@ const Layout = (props) => {
   return (
     <Fragment> 
         <Header/>
-        <main  style={{backgroundColor:'rgba(0, 0, 0, 0.4)'}}>
+        <main 
+        //  style={{backgroundColor:'rgba(0, 0, 0, 0.4)'}}
+         >
+
         <style>
         {`
             ::selection {
@@ -35,7 +38,7 @@ const Layout = (props) => {
           <source src={BGV} type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
-         <img src={bg} style={imageStyle}  />            
+         {/* <img src={bg} style={imageStyle}  />             */}
         
         {props.children}
       </main>
