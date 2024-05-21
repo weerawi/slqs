@@ -1,22 +1,15 @@
-import React from 'react'
-import img from '../Components/Assets/slider4.jpg'
+import React from 'react' 
+import { Link } from 'react-router-dom'
 
-const GalleryCard = () => {
+const GalleryCard = (props) => {
   return (
     <div>
         
-        <main className="main">
-      <div className="grid image-grid">
         
-          <div   className="col-12 col-md-6 col-lg-6 grid-block">
-            <div className="tile">
-              <a className="tile-link" data-fancybox="images" href={`./admin `}>
-                <img className="tile-img" src={img} loading="lazy" alt="Image" />
-              </a>
-            </div>
-          </div> 
-      </div>
-    </main>
+              <Link to={`/gallery/${props.id}`} className=" "   >
+                <img className="w-60 h-100" src={props.image}  alt="Image" />
+              </Link>
+           
 
     </div>
   )
