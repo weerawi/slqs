@@ -1,6 +1,9 @@
-import React from 'react'
-import img from '../Components/Assets/slider4.jpg'
-const CsrCard = () => {
+import React from 'react' 
+import { Link } from 'react-router-dom'
+
+
+const CsrCard = (props) => {
+ 
   return (
     <div className='transition-all duration-1000'>
         <main className="main cursor-pointer">
@@ -8,16 +11,17 @@ const CsrCard = () => {
             data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000">
                 
                 <div   className="csr-card transition-all duration-500 card-grid-space">
-                    <a className="card"  style={{ backgroundImage: `url(${img})` }}>
+                    <Link to={`/csr/${props.id}`} className="card"  style={{ backgroundImage: `url(${props.image})` }}>
                     <div>
-                        <h1>title</h1>
-                        <p>subtitle</p>
+                        <h1>{props.title}</h1>
+                        <p>{props.stitle}</p>
                         <div className="tags">
-                        <div className="tag">date</div>
+                        <div className="tag">{props.date}</div>
                         </div>
                     </div>
-                    </a>
+                    </Link>
                 </div>
+ 
                 
             </section>
         </main> 
