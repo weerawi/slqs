@@ -61,7 +61,9 @@ app.post("/galupload", galleryupload.single('galproduct'), (req, res) => {
 });
 
 
-//Schema for creating products
+//////////////  CSR //////////////////////
+
+//Schema for creating csr products
 
 const CsrProduct = mongoose.model("csrproduct", {
     id:{
@@ -96,7 +98,56 @@ const CsrProduct = mongoose.model("csrproduct", {
 })
 
 
-//Schema for creating products
+//creating API for adding csr products
+
+app.post('/csraddproducts',async (req,res)=>{
+
+    let csrproducts = await CsrProduct.find({});
+    let id;
+    if(csrproducts.length > 0){
+        let last_csr_array = csrproducts.slice(-1);
+        let last_csr = last_csr_array[0];
+        id = last_csr.id + 1;
+    }else{
+        id = 1;
+    }
+
+
+    let csrproduct = await CsrProduct({
+        id:id, 
+        title:req.body.title,
+        stitle:req.body.stitle,
+        image:req.body.image,
+        date:req.body.date,
+        album:req.body.album
+
+    });
+    console.log(csrproduct)
+    await csrproduct.save();
+    console.log("csr save");
+    res.json({
+        success:true,
+        title:req.body.title
+    })
+})
+
+//Creating API for deleting csr products
+
+app.post('/removecsrproduct',async (req,res)=>{
+    await CsrProduct.findOneAndDelete({id:req.body.id});
+    console.log("Removed csr product");
+    res.json({
+        success:1,
+        title:req.body.title
+    });
+})
+
+
+
+
+///////////////// GALLERY  //////////////////////////
+
+//Schema for creating GALLERY products
 
 const GalleryProduct = mongoose.model("galleryproduct", {
     id:{
@@ -125,26 +176,67 @@ const GalleryProduct = mongoose.model("galleryproduct", {
     }
       
 })
+ 
+//creating API for adding gallery products
+
+app.post('/galaddproducts',async (req,res)=>{
+
+    let galproducts = await GalleryProduct.find({});
+    let id;
+    if(galproducts.length > 0){
+        let last_gal_array = galproducts.slice(-1);
+        let last_gal = last_gal_array[0];
+        id = last_gal.id + 1;
+    }else{
+        id = 1;
+    }
+    let galproduct = await GalleryProduct({
+        id:id, 
+        title:req.body.title,
+        image:req.body.image,
+        date:req.body.date,
+        album:req.body.album
+    });
+    console.log(galproduct);
+    await galproduct.save();
+    console.log("gal  save");
+    res.json({
+        success:true,
+        title:req.body.title
+    })
+})
+
+
+//Creating API for deleting gallery products
+
+app.post('/removegalproduct',async (req,res)=>{
+    await GalleryProduct.findOneAndDelete({id:req.body.id});
+    console.log("Removed gal product");
+    res.json({
+        success:1,
+        title:req.body.title
+    });
+})
+
 
 
 
 //creating API for getting csr products
 
-app.get('/csrproducts',async (req,res)=>{
-    let products = await Product.find({});
+app.get('/csrallproducts',async (req,res)=>{
+    let csrproducts = await CsrProduct.find({});
     console.log("All products Fetched.")
-    res.send(products);
+    res.send(csrproducts);
 })
 
 
 //creating API for getting gallery products
 
-app.get('/galleryproducts',async (req,res)=>{
-    let products = await Product.find({});
+app.get('/galallproducts',async (req,res)=>{
+    let galproducts = await GalleryProduct.find({});
     console.log("All products Fetched.")
-    res.send(products);
+    res.send(galproducts);
 })
-
 
 
 app.listen(port,(err)=>{
