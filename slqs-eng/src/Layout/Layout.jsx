@@ -1,9 +1,19 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import bg from '../Components/Assets/bgGray.jpg'
+import { useLocation } from 'react-router-dom'
 
 const Layout = (props) => {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]); // Dependency on pathname to trigger the scroll on route change
+
+  
+
 
     const imageStyle = {
         position: 'fixed',

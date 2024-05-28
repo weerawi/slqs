@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import { SlqsContext } from '../Context/SlqsContext';
+import PageTitle from '../Components/PageTitle'
+import galleryimg from '../Components/Assets/sri_lanka.jpg'
 
 const ImageGallery = () => {
 
@@ -18,15 +20,21 @@ const ImageGallery = () => {
     }
 
     return (
-        <div>
+
+
+      <>
+
+        <PageTitle  name="Images" iamge={galleryimg}/>
+
+        <div className='flex items-center justify-center mx-auto '>
 
           {csr && 
-          <div>
+          <div >
             <h1>{csr.title}</h1>
           <p>{csr.stitle}</p>
-          <div className="album">
+          <div className="album grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-10 w-full h-full ">
             {csr.album.map((image, index) => (
-              <img key={index} width={500} src={image} alt={`Album image ${index + 1}`} />
+              <img key={index} width={500} height={500} src={image} alt={`Album image ${index + 1}`} />
             ))}
           </div>
           </div>
@@ -34,11 +42,11 @@ const ImageGallery = () => {
           }
 
         {gallery && 
-          <div>
+          <div >
             <h1>{gallery.title}</h1> 
-          <div className="album">
+          <div className="album grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-10 w-full h-full  ">
             {gallery.album.map((image, index) => (
-              <img key={index} width={500} src={image} alt={`Album image ${index + 1}`} />
+              <img key={index} width={500} height={500}  src={image} alt={`Album image ${index + 1}`} />
             ))}
           </div>
           </div>
@@ -47,6 +55,9 @@ const ImageGallery = () => {
 
 
         </div>
+      
+      </>
+
       );
     }
     
