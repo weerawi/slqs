@@ -67,7 +67,7 @@ const csrupload = multer({ storage: csrStorage });
 // Creating upload endpoint for csrimages
 app.use('/csrimages', express.static('csr/csrimages'));
 
-app.post("/csrupload", csrupload.array('album', 10), (req, res) => {
+app.post("/csrupload", csrupload.array('album', 30), (req, res) => {
     const image_urls = req.files.map(file => `http://localhost:${port}/csrimages/${file.filename}`);
     res.json({
         success: 1,
@@ -152,7 +152,7 @@ const galleryupload = multer({ storage: galleryStorage });
 
 app.use('/galimages',express.static('gallery/galimages'))
 
-app.post("/galupload", galleryupload.array('album',10), (req, res) => { 
+app.post("/galupload", galleryupload.array('album',30), (req, res) => { 
     const image_urls = req.files.map(file => `http://localhost:${port}/galimages/${file.filename}`);
     res.json({
         success: 1,
@@ -218,7 +218,196 @@ app.get('/galallproducts',async (req,res)=>{
 })
 
 
-/////////////////////////////////////////////////
+////////////////////// ARTICLE ///////////////////////////
+
+
+// Article image storage engine
+const articleStorage = multer.diskStorage({
+    destination: './article/artcleimages',
+    filename: (req, file, cb) => {
+        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+    }
+});
+
+const articleupload = multer({ storage: articleStorage });
+
+
+
+app.use('/articleimages',express.static('/article/articleimages'));
+
+//when articleupload testing this below 'image' is the file name for thunderclient 
+app.post("/articleupload", articleupload.single('image'), (req, res) => {
+    res.json({
+        success: 1,
+        image_urls: `http://localhost:${port}/articleimages/${req.file.filename}`
+    });
+});
+
+
+
+// Define the article data model
+const ArticleData = mongoose.model("articledata", {
+    id: { type: Number, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    image: { type: String, required: true } 
+});
+
+
+// Define the endpoint for adding article data
+
+app.post('/articleaddproducts', async (req, res) => {
+    try {
+      let products = await ArticleData.find({});
+      let id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+  
+      const articledata = new ArticleData({
+        id: id,
+        title: req.body.title,
+        description: req.body.description,
+        image: req.body.image,
+      });
+  
+      await articledata.save();
+      res.json({ success: true, title: req.body.title });
+    } catch (error) {
+      console.error('Error adding article data:', error);
+      res.status(500).json({ success: false, error: 'Failed to save article data' });
+    }
+  }
+);
+
+
+// Creating API for deleting article data
+app.post('/removearticledata', async (req, res) => {
+    await ArticleData.findOneAndDelete({id:req.body.id});
+    console.log("Removed article data");
+    res.json({
+        success:1,
+        title:req.body.title
+    });
+});
+
+
+// Creating API for getting article data
+app.get('/articlealldata', async (req, res) => {
+    let articledata = await ArticleData.find({});
+    console.log("All article data Fetched.");
+    res.send(articledata);
+});
+
+
+///////////////////////////////////////////////
+
+ 
+
+const User = mongoose.model("user", {
+    id: { type: Number, required: true },
+    name: { type: String, required: true }, 
+    email: { type: String, required: true },
+    password: { type: String, required: true }  
+})
+
+
+
+//creating API for user registration
+app.post("/addusers", async (req, res) => { 
+    try {
+        let users  = await User.find({});
+        let id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+    
+        const user = new User({
+          id: id,
+          name: req.body.name,
+          stitle: req.body.stitle,
+          email: req.body.email,
+          password: req.body.password 
+        });
+    
+        await user.save();
+        res.json({ success: true, title: req.body.title });
+      } catch (error) {
+        console.error('Error adding user:', error);
+        res.status(500).json({ success: false, error: 'Failed to save User' });
+      }
+});
+
+
+// Creating API for getting user data
+app.get('/allusers', async (req, res) => {
+    let userdata = await User.find({});
+    console.log("All user data Fetched.");
+    res.send(userdata);
+});
+
+
+// Creating API for deleting user
+app.post('/removeuser', async (req, res) => {
+    await User.findOneAndDelete({id:req.body.id});
+    console.log("Removed user");
+    res.json({
+        success:1,
+        title:req.body.title
+    });
+});
+
+
+//creating endpoint for User Login
+app.post('/login', async (req, res) => {
+    const defaultUser = {
+        email: "slqs-eng@kuwait.com",
+        password: "Slqs-Eng1234",
+        id: "0"
+    };
+
+    if (req.body.email === defaultUser.email && req.body.password === defaultUser.password) {
+        // Generate token for default user
+        const data = {
+            user: {
+                id: defaultUser.id
+            }
+        };
+        const token = jwt.sign(data, "secrete_ecom");
+        res.json({
+            success: true,
+            token
+        });
+        return;
+    }
+
+    // If not default user, proceed with normal login process
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+        const passCompare = req.body.password === user.password;
+        if (passCompare) {
+            const data = {
+                user: {
+                    id: user.id,
+                }
+            }
+            const token = jwt.sign(data, "secrete_ecom");
+            res.json({
+                success: true,
+                token
+            });
+        } else {
+            res.json({
+                success: false,
+                errors: "Wrong Password"
+            })
+        }
+    } else {
+        res.json({
+            success: false,
+            errors: "Wrong Email"
+        })
+    }
+});
+
+
+
+
+
 
 
 
