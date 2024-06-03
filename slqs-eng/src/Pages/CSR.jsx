@@ -7,7 +7,7 @@ import { SlqsContext } from '../Context/SlqsContext'
 
 const CSR = () => {
 
-  const {csr_data} = useContext(SlqsContext); 
+  const {csrallproducts} = useContext(SlqsContext); 
 
 
   return (
@@ -21,7 +21,7 @@ const CSR = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mx-auto '>
 
 
-          {csr_data.map((item,i)=> {
+          {csrallproducts.map((item,i)=> {
             return( 
                 <CsrCard  key={i} id={item.id} title={item.title} stitle={item.stitle} image={item.image} date={item.date}/>
                

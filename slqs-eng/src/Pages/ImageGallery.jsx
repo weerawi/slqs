@@ -7,9 +7,9 @@ import galleryimg from '../Components/Assets/sri_lanka.jpg'
 const ImageGallery = () => {
 
     const { csrId,galleryId } = useParams();
-    const { csr_data,gallery_data } = useContext(SlqsContext);
-    const csr = csr_data.find((e) => e.id === Number(csrId));
-    const gallery = gallery_data.find((e) => e.id === Number(galleryId));
+    const {  csrallproducts,galallproducts } = useContext(SlqsContext);
+    const csr = csrallproducts.find((e) => e.id === Number(csrId));
+    const gallery = galallproducts.find((e) => e.id === Number(galleryId));
 
       
     if (csrId && !csr) {
@@ -20,8 +20,7 @@ const ImageGallery = () => {
     }
 
     return (
-
-
+ 
       <>
 
         <PageTitle  name="Images" iamge={galleryimg}/>
