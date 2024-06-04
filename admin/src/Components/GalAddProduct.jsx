@@ -69,8 +69,7 @@ const GalAddProduct = () => {
           if(data.success) {
             alert('CSR Album Added');
             setGalProductDetails({
-              title: "",
-              stitle: "",
+              title: "", 
               date: "",
             });  
             setImage(null);

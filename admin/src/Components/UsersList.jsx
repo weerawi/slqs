@@ -8,12 +8,12 @@ const UsersList = () => {
     
      
 
-    const [galAllProducts, setGalAllProducts] = useState([]);
+    const [userData, setUserData] = useState([]);
 
     const fetchInfo = async() => {
         await fetch('http://localhost:4000/allusers')
         .then((res)=>res.json())
-        .then((data)=>setGalAllProducts(data))
+        .then((data)=>setUserData(data))
     }
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const UsersList = () => {
         
 
 
-            {galAllProducts.map((product,i) => {
+            {userData.map((product,i) => {
                 
                 return  <div key={i} className="   items-center border-b-2  grid grid-cols-4 gap-1 md:gap-2 lg:gap-10 py-1 
                 border-gray-400 ">
