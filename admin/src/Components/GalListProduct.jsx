@@ -37,6 +37,7 @@ const GalListProduct = () => {
         <div className=" font-semibold  items-center grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 justify-around ">
             {/* <p className='flex justify-center'>Products</p>
             <p className='col-start-2 col-span-3 flex justify-center '>Title</p> */}
+            <p className='flex justify-center' >Image</p> 
             <p className='flex justify-center' >Title</p> 
             <p className='flex justify-center '>Date</p> 
             <p className='flex justify-center'>Remove</p>
@@ -53,6 +54,7 @@ const GalListProduct = () => {
                 border-gray-400 ">
                             {/* <img src={product.image} width={80} height={80} alt={product.title}  className=" mx-auto" /> */}
                             {/* <p className='flex justify-center col-start-2 col-span-3 '></p> */}
+                            <img src={product.image} width={80} height={80} alt={product.title}  className=" mx-auto" />
                             <p className='flex justify-center '>{product.title}</p> 
                             <p className='flex justify -center'>{product.date}</p>
                             
