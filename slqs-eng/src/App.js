@@ -9,13 +9,26 @@ import CSR from "./Pages/CSR";
 import Article from "./Pages/Article";
 import Gallery from "./Pages/Gallery";
 import ImageGallery from "./Pages/ImageGallery";
+import Admin from "./Pages/Admin";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
+
+   //AOS initializing
+   useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  });
+
+
   return (
     < >  
     <Layout>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/admin" element={<Admin/>} />
           <Route path="/aboutus" element={<Aboutus/>} /> 
           <Route path="/contactus" element={<Contactus/>} /> 
           <Route path="/commitee" element={<Commitee/>} /> 

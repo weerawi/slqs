@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ImSpinner8 } from "react-icons/im";
 
 const Admin = () => {
   const [formData, setFormData] = useState({
@@ -34,8 +35,11 @@ const Admin = () => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-      <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
+    <div
+    data-aos="zoom-in"
+    data-aos-duration="1000"
+      className="relative flex flex-col justify-center min-h-screen overflow-hidden " >
+      <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
         <h1 className="text-3xl font-semibold text-center text-red-900 underline">
           Admin Sign in
         </h1>
@@ -74,9 +78,11 @@ const Admin = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
+              className="group w-full flex items-center justify-center gap-2 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform
+               bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600 "
             >
-              Login
+             <ImSpinner8 className='group-hover:animate-spin' /> 
+             <div>Login</div>
             </button>
           </div>
         </form>

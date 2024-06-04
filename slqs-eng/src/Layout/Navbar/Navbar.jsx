@@ -40,7 +40,7 @@ const Navbar = () => {
       <div className="flex items-center font-medium justify-around">
         <div className="z-50 p-5 md:w-auto w-full flex justify-between">
             <Link to="/"  >
-               <img src={Logo} alt="logo" className="md:cursor-pointer h-9" />
+               <img src={Logo} alt="logo" className="md:cursor-pointer h-9 rounded-md" />
             </Link>
            
             <div className="text-3xl md:hidden" onClick={toggleMenu}>

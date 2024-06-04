@@ -12,7 +12,8 @@ const Aboutus = () => {
 
     <PageTitle name="About us" image={aboutimg}/>
     
-    <div 
+    <div data-aos="fade-up"
+     data-aos-duration="1000"
      className='pt-20 pb-32 lg:h-screen   grid lg:grid-flow-col grid-flow-row
       justify-center items-center xl:gap-28 gap-16'> 
       

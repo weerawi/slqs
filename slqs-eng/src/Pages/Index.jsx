@@ -20,7 +20,7 @@ const Index = () => {
   {teamMembers.map((member, index) => (<div key={index}
   className="container mx-auto  flex justify-center my-10  relative"
   data-aos="zoom-in-up"
-  aos-duration="1000"
+  data-aos-duration="1000"
 >
   <div
     className="  transform transition-transform duration-500   cursor-pointer shadow-gray-600 shadow-lg rounded-full overflow-hidden 

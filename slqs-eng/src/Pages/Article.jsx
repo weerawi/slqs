@@ -6,7 +6,7 @@ import { SlqsContext } from '../Context/SlqsContext'
 
 const Article = () => {
 
-  const {article_data} = useContext(SlqsContext);
+  const {articlealldata} = useContext(SlqsContext);
 
   
   return (
@@ -16,7 +16,7 @@ const Article = () => {
     <PageTitle name="Article" image={articleimg}/>
     
     <div className=' min-h-screen flex flex-col gap-20 py-10'>
-      {article_data.map((article) => (
+      {articlealldata.map((article) => (
           <ArticleCard 
             key={article.id}
             title={article.title}

@@ -5,7 +5,9 @@ const GalleryCard = (props) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className='hover:scale-105 transition-all duration-500 pb-10 '>
+    <div
+    data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000"
+     className='hover:scale-105 transition-all duration-500 pb-10 '>
       <div 
         className={`w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 transition-shadow duration-500 rounded-xl   ${isHovered ? 'shadow-lg' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
@@ -18,6 +20,12 @@ const GalleryCard = (props) => {
       >
         <Link to={`/gallery/${props.id}`}>
           <img className="w-full h-full rounded-xl" src={props.image} alt="Image" />
+          
+          <div className=' '>
+            <div>{props.title}</div>
+          <div>{props.date}</div>
+          </div>
+          
         </Link>
       </div>
     </div>
