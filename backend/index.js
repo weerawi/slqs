@@ -6,9 +6,7 @@ const jwt = require("jsonwebtoken");
 const bodyParser = require('body-parser');
 const multer  = require('multer');
 const path  = require("path");
-const cors  = require("cors");
-const { error } = require("console");
-const { title } = require("process");
+const cors  = require("cors"); 
 
 app.use(express.json());
 app.use(cors());
@@ -297,7 +295,7 @@ app.get('/articlealldata', async (req, res) => {
 });
 
 
-///////////////////////////////////////////////
+////////////////////// USERS /////////////////////////
 
  
 
@@ -318,8 +316,7 @@ app.post("/addusers", async (req, res) => {
     
         const user = new User({
           id: id,
-          name: req.body.name,
-          stitle: req.body.stitle,
+          name: req.body.name, 
           email: req.body.email,
           password: req.body.password 
         });
@@ -406,10 +403,109 @@ app.post('/login', async (req, res) => {
 
 
 
+/////////////////////// CONTACT //////////////////////////
+
+const Contact = mongoose.model('contact',{
+    id: { type: Number, required: true },
+    name: { type: String, required: true }, 
+    email: { type: String, required: true }, 
+    subject: { type: String, required: true }, 
+    message: { type: String, required: true }, 
+})
 
 
 
+//creating API for contact us
+app.post("/contactus", async (req, res) => { 
+    try {
+        let contactus  = await Contact.find({});
+        let id = contactus.length > 0 ? contactus[contactus.length - 1].id + 1 : 1;
+    
+        const contact = new Contact({
+          id: id,
+          name: req.body.name, 
+          email: req.body.email,
+          subject: req.body.subject ,    
+          message: req.body.message ,    
+        });
+    
+        await contact.save();
+        res.json({ success: true, title: req.body.title });
+      } catch (error) {
+        console.error('Error adding contact:', error);
+        res.status(500).json({ success: false, error: 'Failed to save contact' });
+      }
+});
 
+ 
+// Creating API for getting user data
+app.get('/allcontacts', async (req, res) => {
+    let contact = await Contact.find({});
+    console.log("All user data Fetched.");
+    res.send(contact);
+});
+
+
+//creating API for delete contact response
+app.post('/removecontact', async(req,res)=> {
+    await Contact.findOneAndDelete({id:req.body.id});
+    console.log("Remove contact response");
+    res.json({
+        success:1,
+        
+    })
+})
+
+
+////////////////// SLIDER IMAGES /////////////////////////
+const Slider = mongoose.model('Slide',{
+    title: { type: String, required: true },
+    image: { type: String, required: true }, 
+    date: { type: String, required: true },
+});
+
+
+//creating API for adding slider images
+
+app.post('/sliderimageadd',async (req,res)=>{
+
+    try{
+        let slider = await Slider.find({});
+        let id = slider.length > 0 ? slider[slider.length - 1].id + 1 : 1;
+
+        const slide = new Slider({
+            id: id,
+            title: req.body.title, 
+            image: req.body.image ,
+            date: req.body.date,
+        })
+
+        await slide.save();
+        res.json({success:true,title:req.body.title});
+
+    }catch(error){
+        console.error('Error adding Slider image:', error);
+        res.status(500).json({ success: false, error: 'Failed to save Slider image' });
+    }
+})
+
+
+app.get('/allsliderimages',async(req,res)=> {
+    let sliders = await Slider.find({});
+    console.log("All slider images fetched");
+    res.send(sliders);
+})
+
+app.post('/removesliderimage',async(req,res)=> {
+    await Slider.findOneAndDelete({id:req.body.id});
+    console.log("Remove slider image");
+    res.json({
+        success:1,
+        title:req.body.title
+    });
+})
+
+/////////////////////////////////////////////////
 
 
 
