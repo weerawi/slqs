@@ -37,10 +37,10 @@ const ContactDetails = () => {
     
 
   return (
-    <div className="flex flex-col items-center w-[80%] mx-auto"> 
+    <div className="flex flex-col items-center   mx-auto"> 
 
-        <h1 className="text-3xl font-bold p-5">All Users</h1>
-        <div className=" font-semibold  items-center grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 justify-around ">
+        <h1 className="text-3xl font-bold p-5">Contact response</h1>
+        <div className=" font-semibold  items-center grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 justify-around  w-[1000px]">
             {/* <p className='flex justify-center'>Products</p>
             <p className='col-start-2 col-span-3 flex justify-center '>Title</p> */}
             <p className='flex justify-center' >Name</p> 
@@ -57,14 +57,14 @@ const ContactDetails = () => {
 
             {contactUs.map((product,i) => {
                 
-                return  <div key={i} className="   items-center border-b-2  grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 
+                return  <div key={i} className="  w-[1000px]  items-center border-b-2  grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 
                 border-gray-400 ">
                             {/* <img src={product.image} width={80} height={80} alt={product.title}  className=" mx-auto" /> */}
                             {/* <p className='flex justify-center col-start-2 col-span-3 '></p> */}
                             <p className='flex justify-center '>{product.name}</p> 
-                            <p className='flex justify -center'>{product.email}</p>
-                            <p className='flex justify -center'>{product.subject}</p>
-                            <p className='flex justify -center'>{product.message}</p>
+                            <p className='flex justify-center'>{product.email}</p>
+                            <p className='flex justify-center'>{product.subject}</p>
+                            <p className='flex justify-center'>{product.message}</p>
                             
 
                             <img className="cursor-pointer  mx-auto " width={10} height={10} src={remove_icon} alt="" onClick={() => {remove_product(product.id)}} />

@@ -83,9 +83,9 @@ const GalAddProduct = () => {
     };
   
     return (
-      <div>
+      <div className="mx-auto">
         <div className='text-4xl flex items-center justify-center py-10'> Gallery Album Upload</div>
-        <div className="flex flex-col gap-7 p-16 bg-gray-200 ml-5 my-5 w-auto sm:w-[500px] lg:w-[750px] xl:w-[1280px] font-custom-robot">
+        <div className="flex flex-col gap-7 p-16 bg-gray-200 ml-5 my-5 w-auto sm:w-[500px] lg:w-[750px]   font-custom-robot">
           <div className="space-y-2">
             <p>Title</p>
             <input
