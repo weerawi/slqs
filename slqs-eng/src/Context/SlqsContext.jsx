@@ -12,6 +12,8 @@ const SlqsContextProvider = (props) => {
   const [articlealldata,setArticleAllData] = useState([]);
   const [allsliderimages,setAllSliderImages] = useState([]);
 
+  const [isFixed, setIsFixed] = useState(false); 
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(()=>{
     fetch('http://localhost:4000/csrallproducts')
@@ -44,13 +46,36 @@ const SlqsContextProvider = (props) => {
   },[]) 
 
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+        setIsFixed(true);
+      } else {
+        setIsScrolled(false);
+        setIsFixed(false);
+      }
+    
+       
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   const contextValue = {
     
     article_data,
     articlealldata,
     galallproducts,
     csrallproducts,
-    allsliderimages
+    allsliderimages,
+    isFixed,
+    isScrolled
   }
 
   return (
