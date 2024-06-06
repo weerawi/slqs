@@ -87,9 +87,10 @@ const Contact= () => {
         backdropFilter: 'blur(3px)',
         background: 'rgba(0, 0,0, 0.6)',
       }}
-        className='rounded-2xl group p-3 w-96 flex flex-col justify-center'>
-        <a href="https://www.google.com/maps?q=Kuwait+City,+Kuwait" target="_blank" rel="noopener noreferrer" className='gap-2 flex items-center'>
-          <MdLocationOn className='text-2xl group-hover:animate-bounce'/> Kuwait City, Kuwait
+        className='rounded-2xl group p-3 gap-2 w-96 flex flex-col justify-center'>
+        <a href="https://www.google.com/maps?q=Kuwait+City,+Kuwait" target="_blank" rel="noopener noreferrer" 
+        className=' gap-2 flex items-center'>
+          <MdLocationOn className='text-xl group-hover:animate-bounce'/> Kuwait City, Kuwait
         </a>
         <Map />
       </div>

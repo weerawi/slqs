@@ -67,7 +67,7 @@ import {
 const Footer = () => {
     return (
         <footer 
-         className="bg-black  text-gray-200 pt-8 mt-16 pb-3 relative  ">
+         className="bg-black  text-gray-200 pt-8 mt-16 pb-3 relative font-custom-robot ">
 
         <svg 
           className="absolute top-0 w-full h-5 -mt-4  lg:-mt-8 lg:h-8   sm:-mt-6 sm:h-6 text-black  "
@@ -109,7 +109,7 @@ const Footer = () => {
                 </a>
                 <a href="https://www.google.com/maps?q=Kuwait+City,+Kuwait" target="_blank" rel="noopener noreferrer" 
                 className='rounded-2xl group p-3 gap-2 w-96 flex items-center'>
-                  <MdLocationOn className='text-2xl group-hover:animate-pulse'/> Kuwait City, Kuwait
+                  <MdLocationOn className='text-xl group-hover:animate-pulse'/> Kuwait City, Kuwait
                 </a>
 
                 <div className="flex items-center mt-4 text-xl space-x-4 sm:mt-0 p-3">

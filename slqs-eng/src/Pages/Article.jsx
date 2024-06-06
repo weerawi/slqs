@@ -15,6 +15,7 @@ const Article = () => {
 
     <PageTitle name="Article" image={articleimg}/>
     
+    
     <div className=' min-h-screen flex flex-col gap-20 py-10'>
       {articlealldata.map((article) => (
           <ArticleCard 
