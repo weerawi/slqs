@@ -1,56 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from "./Navbar/Navbar";   
+import React, { useContext,  } from 'react'
+import Navbar from "./Navbar/Navbar";    
+import { SlqsContext } from '../Context/SlqsContext';
  
   
 const Header = () => {
 
-    const [isFixed, setIsFixed] = useState(false); 
-    const [isScrolled, setIsScrolled] = useState(false);
-  
+  const {isFixed,isScrolled} = useContext(SlqsContext);
 
    
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-        setIsFixed(true);
-      } else {
-        setIsScrolled(false);
-        setIsFixed(false);
-      }
-    
-       
-    };
-  
-    window.addEventListener('scroll', handleScroll);
-  
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-//   const colorStyle = {
-//     color:!isScrolled || !isFixed ? ' ' : '  rgba(255, 255, 255, 0.55) ',// Set the color based on isScrolled and isFixed states
-//   };
   return (
     <header  
 
     style={{
-        backdropFilter: 'blur(10px)',
+        backdropFilter: isFixed ? 'blur(10px)':'',
+        backgroundColor: !isScrolled || !isFixed ? 'transparent' : 'rgba(0, 0, 0, 0.7)',
 
-        borderBottom: !isScrolled || !isFixed ? '1px solid rgba(255, 255, 255, 0.45)' : '1px solid rgba(255, 255, 255, 0.25) ',
+        borderBottom: !isScrolled || !isFixed ? '' : '1px solid rgba(255,255,255, 0.55) ',
         
         transition: "background 0.5s ease-in-out",
-        position: isFixed ? 'fixed' : 'relative',
-        // top: isFixed ? '0' : 'auto', 
+        position:  'fixed' ,
+        top: 0 , 
         // height: '4.5rem',
-        zIndex:100,
+        zIndex: isFixed ? 100 : 1,
         width: '100%', 
       }}
     
     >
-       
+     
       <Navbar />  
     </header>
   )

@@ -6,8 +6,8 @@ export const links = [
         
             { name: "Commitee", link: "/commitee" },
             { name: "Index", link: "/index" },
-            { name: "Training & Events", link: "/training" },
-            { name: "Jobs in Kuwait", link: "/jobs" },
+            // { name: "Training & Events", link: "/training" },
+            // { name: "Jobs in Kuwait", link: "/jobs" },
             { name: "Admin", link: "/admin" },
          
           

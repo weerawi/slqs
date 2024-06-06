@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../Components/Assets/title.png"; 
 import NavLinks from "./NavLinks";  
 import { RiCloseFill, RiMenuFill } from "react-icons/ri";
+import Contactbar from "./Contactbar";
+import { SlqsContext } from "../../Context/SlqsContext";
 
 const Navbar = () => {
+  const {isFixed,isScrolled} = useContext(SlqsContext);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -32,22 +35,36 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white  text-red-900 z-10 relative"
+    <nav className=" z-10 text-gray-100 relative transition-all w-auto"
     style={{ 
-      boxShadow: " rgba(10, 37, 64, 0.35) 0px -4px 10px 0px inset",
+      boxShadow: isFixed? " rgba(255,255,255, 0.55) 0px -4px 10px 0px inset":'',
     }}
     >
+
+      <div style={{
+        height: !isScrolled ? '40px' : '0',    
+        transition: "height 0.5s ease-in-out  ",
+      }}>
+        {!isScrolled&& <Contactbar/>}
+      </div>
+
+     
       <div className="flex items-center font-medium justify-around">
+
+        
         <div className="z-50 p-5 md:w-auto w-full flex justify-between">
-            <Link to="/"  >
+            <Link to="/" className="flex gap-4 md:text-sm lg:text-base items-center font-bold" >
                <img src={Logo} alt="logo" className="md:cursor-pointer h-9 rounded-md" />
+               SLQS & ENG-KUWAIT
+
+
             </Link>
            
             <div className="text-3xl md:hidden" onClick={toggleMenu}>
             {open ? <RiCloseFill /> : <RiMenuFill />}
           </div>
         </div>
-        <ul className="md:flex hidden uppercase items-center gap-8 font-[Poppins]  ">
+        <ul className="md:flex md:text-sm lg:text-base hidden uppercase items-center gap-8 font-custom-poppin ">
           <li>
             <Link to="/" className="py-7 px-3 inline-block">
               Home
