@@ -584,6 +584,7 @@ app.post('/removecontact', async(req,res)=> {
 
 ////////////////// SLIDER IMAGES /////////////////////////
 const Slider = mongoose.model('Slide',{
+    id:{ type: String, required: true },
     title: { type: String, required: true },
     image: { type: String, required: true }, 
     date: { type: String, required: true },

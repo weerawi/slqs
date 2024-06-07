@@ -65,7 +65,7 @@ const UsersList = () => {
                             <div className="flex justify-around ">
 
 
-                            <MdDelete className="text-2xl cursor-pointer text-red-600" onClick={() => removeProduct(product._id)} />
+                            <button onClick={() => { removeProduct(product.id) }} ><MdDelete className="text-2xl  "/></button>
                             </div>
                             
                         </div>

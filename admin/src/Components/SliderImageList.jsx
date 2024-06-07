@@ -257,7 +257,7 @@ const SliderImageList = () => {
                                 <p className='flex justify-center'>{product.date}</p> 
                                 <div className="flex justify-around col-span-2">
                                     <button onClick={() => editProductHandler(product)}>Edit</button>
-                                    <MdDelete className="text-2xl cursor-pointer text-red-600" onClick={() => removeProduct(product._id)} />
+                                    <button onClick={() => { removeProduct(product.id) }} ><MdDelete className="text-2xl  "/></button>
                                 </div>
                             </>
                         )}
