@@ -1,6 +1,4 @@
-import {Link} from 'react-router-dom';
-import add_product_icon from '../assets/Product_Cart.svg';
-import list_product_icon from '../assets/Product_list_icon.svg';
+import {Link} from 'react-router-dom'; 
 import { IoIosAlbums } from "react-icons/io";
 import { GrGallery } from "react-icons/gr";
 import { FaListAlt,FaList,FaThList  } from "react-icons/fa";

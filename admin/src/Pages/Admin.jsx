@@ -11,6 +11,7 @@ import UsersList from "../Components/UsersList"
 import ContactDetails from "../Components/ContactDetails"
 import SliderImagesAdd from "../Components/SliderImagesAdd"
 import SliderImageList from "../Components/SliderImageList"
+import Home from "../Components/Home"
 
  
 
@@ -19,6 +20,7 @@ const Admin = () => {
     <div className="flex h-auto ">
         <Sidebar/>
         <Routes>
+            <Route path="/" element={<Home/>}/>
             <Route path="/csraddproduct" element={<CsrAddProduct/>}/>
             <Route path="/galaddproduct" element={<GalAddProduct/>}/> 
             <Route path="/articleaddproduct" element={<ArticleAddData/>}/> 
