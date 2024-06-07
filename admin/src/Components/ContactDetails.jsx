@@ -1,7 +1,7 @@
-import { useState } from "react";
-import remove_icon from '../assets/cross_icon.png';
+import { useState } from "react"; 
 import { useEffect } from "react";
 
+import { MdDelete } from "react-icons/md";
  
 
 const ContactDetails = () => {
@@ -21,7 +21,7 @@ const ContactDetails = () => {
     },[])
 
 
-    const remove_product = async(id) => {
+    const removeProduct = async(id) => {
         await fetch(`http://localhost:4000/removecontact`,{
             method:'POST',
             headers:{
@@ -67,7 +67,9 @@ const ContactDetails = () => {
                             <p className='flex justify-center'>{product.message}</p>
                             
 
-                            <img className="cursor-pointer  mx-auto " width={10} height={10} src={remove_icon} alt="" onClick={() => {remove_product(product.id)}} />
+                            <div className="flex justify-around ">
+                                <MdDelete className="text-2xl cursor-pointer text-red-600" onClick={() => removeProduct(product._id)} />
+                            </div>
                         </div>
                 
             })}
