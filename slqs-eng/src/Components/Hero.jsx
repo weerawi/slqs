@@ -22,7 +22,7 @@ const Hero = () => {
       
       {/* Content */}
       <div className=" absolute inset-0 flex flex-col justify-center items-center text-white">
-        <img src={Logo} alt="logo" className="md:cursor-pointer h-16" />
+        <img src={Logo} alt="logo" className="rounded-md md:cursor-pointer h-16 my-5" />
         <div className=" text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6  animate-pulse flex flex-col text-center">Sri Lankan Quantity Surveyors</div>
         <div className=" text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6  animate-pulse flex flex-col text-center"> &</div>
         <div className=" text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6  animate-pulse flex flex-col text-center"> 

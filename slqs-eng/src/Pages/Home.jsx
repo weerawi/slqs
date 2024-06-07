@@ -12,7 +12,7 @@ const Home = () => {
       <Hero/>
 
       
-      <div className='h-[50vh] flex items-center justify-center m-0 p-0'
+      <div className='h-[60vh] flex items-center justify-center m-0 p-0 mt-10'
       style={{
         backgroundImage:`url(${bgimage})`,
         backgroundSize: 'cover',
