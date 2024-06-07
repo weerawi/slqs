@@ -128,7 +128,27 @@ app.get('/csrallproducts', async (req, res) => {
     res.send(csrproducts);
 });
 
- 
+
+// Define the endpoint for updating CSR products
+app.put('/csrupdateproduct', async (req, res) => {
+    try {
+        const { id, title, stitle, image, date} = req.body;
+        const updatedProduct = await CsrProduct.findOneAndUpdate(
+            { id },
+            { title, stitle, image, date},
+            { new: true }
+        );
+        if (updatedProduct) {
+            res.json({ success: true });
+        } else {
+            res.status(404).json({ success: false, error: 'Product not found' });
+        }
+    } catch (error) {
+        console.error('Error updating CSR product:', error);
+        res.status(500).json({ success: false, error: 'Failed to update CSR product' });
+    }
+});
+
 
 
 ///////////////// GALLERY  //////////////////////////
@@ -215,6 +235,27 @@ app.get('/galallproducts',async (req,res)=>{
     res.send(galproducts);
 })
 
+// Creating API for updating gallery products
+app.put('/galupdateproduct', async (req, res) => {
+    try {
+        const { id, title, image, date, album } = req.body;
+        const updatedProduct = await GalleryProduct.findOneAndUpdate(
+            { id },
+            { title, image, date, album },
+            { new: true }
+        );
+        if (updatedProduct) {
+            res.json({ success: true });
+        } else {
+            res.status(404).json({ success: false, error: 'Product not found' });
+        }
+    } catch (error) {
+        console.error('Error updating Gallery product:', error);
+        res.status(500).json({ success: false, error: 'Failed to update Gallery product' });
+    }
+});
+
+
 
 ////////////////////// ARTICLE ///////////////////////////
 
@@ -293,6 +334,29 @@ app.get('/articlealldata', async (req, res) => {
     console.log("All article data Fetched.");
     res.send(articledata);
 });
+
+
+// Define the endpoint for updating Article products
+app.put('/articleupdateproducts', async (req, res) => {
+    try {
+        const { id, title, description, image } = req.body;
+        const updatedProduct = await ArticleData.findOneAndUpdate(
+            { id },
+            { title,description, image},
+            { new: true }
+        );
+        if (updatedProduct) {
+            res.json({ success: true });
+        } else {
+            res.status(404).json({ success: false, error: 'Article not found' });
+        }
+    } catch (error) {
+        console.error('Error updating Article product:', error);
+        res.status(500).json({ success: false, error: 'Failed to update Article' });
+    }
+});
+
+
 
 
 ////////////////////// USERS /////////////////////////
@@ -402,6 +466,67 @@ app.post('/login', async (req, res) => {
 });
 
 
+// Middleware to verify JWT token
+// const authenticateToken = (req, res, next) => {
+//     const token = req.headers['authorization'];
+//     if (!token) return res.sendStatus(401);
+  
+//     jwt.verify(token, 'secrete_ecom', (err, user) => {
+//       if (err) return res.sendStatus(403);
+//       req.user = user;
+//       next();
+//     });
+//   };
+
+// Middleware to verify JWT token
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization'] && req.headers['authorization'].split(' ')[1];
+    if (!token) {
+      return res.status(401).send({ errors: "Authentication failed! Please authenticate using a valid TOKEN" });
+    }
+    try {
+      const data = jwt.verify(token, 'secrete_ecom');
+      req.user = data.user;
+      next();
+    } catch (errors) {
+      return res.status(401).send({ errors: "Authentication failed! Please authenticate using a valid PROFILE" });
+    }
+  };
+  
+  // Protected endpoint to fetch user data
+  app.get('/loggeduser', authenticateToken, async (req, res) => {
+    const userId = req.user.id;
+    try {
+      const userData = await User.findOne({ id: userId }).select('-password');
+      if (!userData) {
+        return res.status(404).send({ errors: 'User not found' });
+      }
+      res.json(userData);
+    } catch (error) {
+      res.status(500).send({ errors: 'Server error' });
+    }
+  });
+
+
+//   app.put('/userupdate', async (req, res) => {
+//     try {
+//         const { id, name,email,password} = req.body;
+//         const updatedProduct = await CsrProduct.findOneAndUpdate(
+//             { id },
+//             { name,email,password},
+//             { new: true }
+//         );
+//         if (updatedProduct) {
+//             res.json({ success: true });
+//         } else {
+//             res.status(404).json({ success: false, error: 'User not found' });
+//         }
+//     } catch (error) {
+//         console.error('Error updating User:', error);
+//         res.status(500).json({ success: false, error: 'Failed to update User details' });
+//     }
+// });
+
 
 /////////////////////// CONTACT //////////////////////////
 
@@ -437,7 +562,7 @@ app.post("/contactus", async (req, res) => {
       }
 });
 
- 
+
 // Creating API for getting user data
 app.get('/allcontacts', async (req, res) => {
     let contact = await Contact.find({});
@@ -466,7 +591,6 @@ const Slider = mongoose.model('Slide',{
 
 
 //creating API for adding slider images
-
 app.post('/sliderimageadd',async (req,res)=>{
 
     try{
@@ -505,8 +629,27 @@ app.post('/removesliderimage',async(req,res)=> {
     });
 })
 
-/////////////////////////////////////////////////
+//define endpoints for updatinf slider images
+app.put('/updatesliderimage',async(req,res)=>{
+    try{
+        const {id,title,image,date} = req.body;
+        const updatedSlider = await Slider.findOneAndUpdate(
+            {id},
+            {title,image,date},
+            {new:true}
+        );
+        if(updatedSlider){
+            res.json({success:true});
+        }else{
+            res.status(404).json({success:false,error:'Slider not found'});
+        }
+    }catch(error){
+        console.error('Error updating Slider image:', error);
+        res.status(500).json({ success: false, error: 'Failed to update Slider image' });
+    }
+})
 
+/////////////////////////////////////////////////
 
 
 
