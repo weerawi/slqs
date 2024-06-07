@@ -13,7 +13,7 @@ const Header = () => {
 
     style={{
         backdropFilter: isFixed ? 'blur(10px)':'',
-        backgroundColor: !isScrolled || !isFixed ? 'transparent' : 'rgba(0, 0, 0, 0.7)',
+        backgroundColor: !isScrolled || !isFixed ? 'transparent' : 'rgba(128, 0, 0, 0.7)',
 
         borderBottom: !isScrolled || !isFixed ? '' : '1px solid rgba(255,255,255, 0.55) ',
         

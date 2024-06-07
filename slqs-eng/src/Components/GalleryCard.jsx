@@ -21,10 +21,7 @@ const GalleryCard = (props) => {
         <Link to={`/gallery/${props.id}`}>
           <img className="w-full h-full rounded-xl" src={props.image} alt="Image" />
           
-          <div className=' '>
-            <div>{props.title}</div>
-          <div>{props.date}</div>
-          </div>
+          
           
         </Link>
       </div>

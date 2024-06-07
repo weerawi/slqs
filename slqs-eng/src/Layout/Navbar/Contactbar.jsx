@@ -11,7 +11,8 @@ const Contactbar = () => {
 
     <div className="   ">
 
-        <div className='flex justify-between w-auto mx-auto'>
+        <div className='flex justify-between w-full md:w-[80%] max-w-[1300px] mx-auto'>
+
             <div className='flex justify-around'>
                 <a href="tel:+96550480958" 
                     className='  group p-3 gap-2   flex items-center'>
@@ -26,6 +27,7 @@ const Contactbar = () => {
                      
                 </a>
             </div>
+
             <div className='flex items-center gap-2  justify-around'> 
                 <a href="https://www.facebook.com/yourpage">
                 <TiSocialFacebook className="text-2xl hover:text-blue-600" />
@@ -37,8 +39,11 @@ const Contactbar = () => {
                 <TiSocialInstagram className="text-2xl hover:text-pink-500" />
                 </a> 
             </div>
+
         </div>
+        
     </div>
+
   )
 }
 
