@@ -81,8 +81,9 @@ const ArticleAddData = () => {
   
           <div className="space-y-2">
             <p>Description</p>
-            <input
-              value={articleDataDetails.stitle}
+            <textarea
+            style={{ height: "300px" }}
+              value={articleDataDetails.description}
               onChange={changeHandler}
               className="text-sm p-2 w-[100%]"
               type="text"
