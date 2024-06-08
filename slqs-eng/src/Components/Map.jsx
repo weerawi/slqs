@@ -1,42 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
-const mapContainerStyle = {
-  width: '100%',
-  height: '400px',
-};
-
-const center = {
-  lat: 37.7749,
-  lng: -122.4194,
-};
+// Fix for default marker icon issue
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 const Map = () => {
-  const [selected, setSelected] = useState(null);
-
-  const onSelect = (event) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    setSelected({ lat, lng });
-  };
+  const position = [29.3759, 47.9774]; // Latitude and longitude for Kuwait City
 
   return (
-    <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        zoom={12}
-        onClick={onSelect}
-      >
-        {selected && (
-          <Marker
-            position={{ lat: selected.lat, lng: selected.lng }}
-            onClick={() => setSelected(null)}
-          />
-        )}
-      </GoogleMap>
-    </LoadScript>
+    <MapContainer center={position} zoom={11} style={{ height: '400px', width: '100%' }}>
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?lang=en"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <Marker position={position}>
+        <Popup>Kuwait City</Popup>
+      </Marker>
+    </MapContainer>
   );
 };
 
 export default Map;
+
+
+
+
