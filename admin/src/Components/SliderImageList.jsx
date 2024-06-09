@@ -231,7 +231,7 @@ const SliderImageList = () => {
     return (
         <div className="flex flex-col items-center w-[80%] mx-auto"> 
             <h1 className="text-3xl font-bold p-5">All Slider Images</h1>
-            <div className="font-semibold items-center grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 justify-around w-[800px]">
+            <div className="font-semibold items-center grid grid-cols-5 gap-1 md:gap-2 lg:gap-10 py-1 justify-around w-[1000px]">
                 <p className='flex justify-center'>Image</p> 
                 <p className='flex justify-center'>Title</p> 
                 <p className='flex justify-center'>Date</p> 
