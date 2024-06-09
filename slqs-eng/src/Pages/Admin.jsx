@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ImSpinner8 } from "react-icons/im";
 import PageTitle from '../Components/PageTitle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Admin = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -37,7 +39,16 @@ const Admin = () => {
             setIsLoggedIn(true);
             fetchUserData(token);
         } else {
-            alert(responseData.errors);
+            // alert(responseData.errors);
+            toast.error(responseData.errors, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+            });
         }
         setLoading(false);
     };
@@ -87,8 +98,25 @@ const Admin = () => {
 
     return (
         <>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+            
             <PageTitle name="admin" />
-            <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+            <div
+            data-aos="zoom-in-right"
+    data-aos-duration="1000"
+             className="relative flex flex-col justify-center min-h-[50vh]  h-auto my-10 overflow-hidden">
                 {!isLoggedIn ? (
                     <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
                         <h1 className="text-3xl font-semibold text-center text-red-900 underline">

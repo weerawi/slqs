@@ -9,7 +9,7 @@ import {
 const Contactbar = () => {
   return (
 
-    <div className="   ">
+    <div className=" py-2  ">
 
         <div className='flex justify-between w-full md:w-[80%] max-w-[1300px] mx-auto'>
 
