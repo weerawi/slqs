@@ -157,7 +157,7 @@ const Navbar = () => {
         {/* Mobile navigatio icon start */}
         <div
             className="w-20   h-10  rounded-full flex md:hidden justify-center 
-                    items-center text-gray-500 bg-gray-300 hover:bg-gray-500 hover:text-gray-200 cursor-pointer   shadow-gray-800 shadow-inner "
+                   transition-all duration-300 items-center text-red-800 bg-gray-300 hover:bg-red-900 hover:text-gray-200 cursor-pointer hover:shadow-gray-200  shadow-red-900 shadow-md "
             onClick={() => setMobileMenu(!mobileMenu)}
         >
             {mobileMenu ? (
