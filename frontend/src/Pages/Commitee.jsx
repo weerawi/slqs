@@ -24,15 +24,32 @@ function Committee() {
       data-aos="zoom-in-up"
       data-aos-duration="1000"
     >
-      <div
+
+
+     <div style={{
+      backgroundImage:`url(${profile})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+     }} className='w-[250px] h-[250px]'> 
+
+     <div className=''>
+
+        <div>
+        {member.name}
+
+        </div>
+        <div>
+        {member.position}
+        </div>
+        
+     </div>
+
+     </div>
+      {/* <div
         className="  transform transition-transform duration-500   cursor-pointer shadow-gray-600 shadow-lg rounded-full overflow-hidden 
         w-[250px] h-[250px] "
       >
-        {/* <img
-          className="w-full h-full object-cover"
-          src={props.image}
-          alt="Profile"
-        /> */} 
+         
         <img className='bg-gray-200' src={profile} alt='account'   />          
         <div
           className={`  absolute text-gray-600 bg-white bg-opacity-60 backdrop-blur-md h-64 hover:h-72 pt-[5%] px-5 flex flex-col items-center  
@@ -73,7 +90,7 @@ function Committee() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   ))}
 

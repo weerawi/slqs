@@ -5,7 +5,7 @@ import React from 'react'
 const PageTitle = (props) => {
   return (
     <div>
-        <div className='h-[40vh] md:h-[60vh] flex items-center justify-center 
+        <div className='h-[50vh] md:h-[60vh] flex items-center justify-center 
         rounded-br-[100px] sm:rounded-br-[130px] md:rounded-br-[200px] xl:rounded-br-[300px]
         rounded-bl-[100px] sm:rounded-bl-[130px] md:rounded-bl-[200px] xl:rounded-bl-[300px] '
         style={{

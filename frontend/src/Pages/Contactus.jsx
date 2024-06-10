@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../Components/Assets/contactfront.jpg';
 import PageTitle from '../Components/PageTitle';
 import contactimg from '../Components/Assets/top_5.jpg';
@@ -6,8 +6,12 @@ import { MdCall, MdEmail, MdLocationOn } from "react-icons/md";
 import Map from '../Components/Map';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SlqsContext } from '../Context/SlqsContext';
 
 const Contact = () => {
+  const {DIR} = useContext(SlqsContext);
+
+
   const [contactData, setContactData] = useState({
     name: "",
     email: "",
@@ -26,7 +30,7 @@ const Contact = () => {
       ...contactData,
     };
 
-    await fetch('http://localhost:4000/contactus', {
+    await fetch(`${DIR}/contactus`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +58,7 @@ const Contact = () => {
             message: ""
           });
         } else {
-          toast.error('Failed to send', {
+          toast.error('Failed to send,All Fields are required!', {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -68,13 +72,21 @@ const Contact = () => {
       });
   };
 
+  const resetForm = () => {
+    setContactData({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
+  };
+
   return (
     <>
       <PageTitle name='contact us' image={contactimg} />
-      <div className='grid grid-cols-1 lg:grid-cols-2 items-center justify-center max-w-[1300px] mx-auto pt-10 mt-24'>
-        <div
-          
-          className='flex flex-col items-center justify-center gap-4 text-white pt-10 sm:pt-0'
+      <div className='grid grid-cols-1 lg:grid-cols-2 items-center justify-center max-w-[1300px] mx-auto pt-10 mt-5 md:mt-20'>
+        <div 
+          className='mx-5 md:mx-0 flex flex-col items-center justify-center gap-4 text-white pt-10 sm:pt-0'
         >
           <a 
           data-aos="fade-up" 
@@ -103,9 +115,9 @@ const Contact = () => {
         <div 
         data-aos="fade-up"
           data-aos-delay="100"
-          data-aos-duration="1500"
-           className='pt-20 sm:pt-0'>
-          <div className="h-screen pt-10 pb-32 px-1 md:px-5 py-6 flex flex-col justify-center sm:py-12"  >
+          data-aos-duration="1000"
+           className='pt-10 md:pt-20  '>
+          <div className="h-screen  sm:pt-10   sm:pb-10 md:pb-20 px-1 md:px-5  flex flex-col justify-center  "  >
             <div className="relative py-3 sm:max-w-xl sm:mx-auto">
               <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="1400" className="absolute inset-0 transform -skew-y-3 rotate-5 rounded-3xl flex items-center justify-center p-4 sm:p-14 md:p-16">
                 <img className='sm:rounded-3xl rounded-2xl' src={logo} alt='logo' />
@@ -122,7 +134,7 @@ const Contact = () => {
                   <textarea value={contactData.message} onChange={changeHandler} className="shadow focus:ring focus:ring-gray-300 mb-4 min-h-0 appearance-none border rounded h-64 w-full py-2 px-3 text-gray-200 font-semibold bg-transparent leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="message" name="message" style={{ height: "121px" }}></textarea>
                   <div className="flex justify-between font-semibold">
                     <input style={{ backdropFilter: 'blur(6px)', background: 'rgba(255, 255, 255, 0.3)' }} className="shadow cursor-pointer hover:font-bold transition-all hover:scale-[1.1] text-gray-200 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Send" onClick={handleSubmit} />
-                    <input style={{ backdropFilter: 'blur(6px)', background: 'rgba(255, 255, 255, 0.3)' }} className="shadow cursor-pointer hover:font-bold transition-all hover:scale-[1.1] text-gray-200 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="reset" value="Reset" />
+                    <input style={{ backdropFilter: 'blur(6px)', background: 'rgba(255, 255, 255, 0.3)' }} className="shadow cursor-pointer hover:font-bold transition-all hover:scale-[1.1] text-gray-200 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="reset" value="Reset" onClick={resetForm}/>
                   </div>
                 </div>
               </div>

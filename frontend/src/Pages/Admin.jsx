@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ImSpinner8 } from "react-icons/im";
 import PageTitle from '../Components/PageTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SlqsContext } from '../Context/SlqsContext';
 
 const Admin = () => {
+
+    const {DIR} = useContext(SlqsContext);
+
+
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(null);
@@ -19,7 +24,7 @@ const Admin = () => {
         setLoading(true);
         let responseData;
 
-        await fetch('http://localhost:4000/login', {
+        await fetch(`${DIR}/login`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -55,7 +60,7 @@ const Admin = () => {
 
     const fetchUserData = async (token) => {
         try {
-            const response = await fetch('http://localhost:4000/loggeduser', {
+            const response = await fetch(`${DIR}/loggeduser`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
