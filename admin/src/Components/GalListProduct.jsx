@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { MdDelete } from 'react-icons/md'; 
+import { AdminContext } from "../Context/AdminContext";
 
 const GalListProduct = () => {
+    const {DIR} = useContext(AdminContext);
+
+
     const [galAllProducts, setGalAllProducts] = useState([]);
     const [editingProductId, setEditingProductId] = useState(null);
     const [editingProductData, setEditingProductData] = useState({});
 
     const fetchInfo = async () => {
-        await fetch('http://localhost:4000/galallproducts')
+        await fetch(`${DIR}/galallproducts`)
             .then((res) => res.json())
             .then((data) => setGalAllProducts(data));
     };
@@ -17,7 +21,7 @@ const GalListProduct = () => {
     }, []);
 
     const removeProduct = async (id) => {
-        await fetch('http://localhost:4000/removegalproduct', {
+        await fetch(`${DIR}/removegalproduct`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -39,7 +43,7 @@ const GalListProduct = () => {
     };
 
     const saveProductHandler = async () => {
-        await fetch('http://localhost:4000/galupdateproduct', { // Note the endpoint
+        await fetch(`${DIR}/galupdateproduct`, { // Note the endpoint
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,7 +70,7 @@ const GalListProduct = () => {
         const imageData = new FormData();
         imageData.append('image', file);
 
-        const response = await fetch('http://localhost:4000/upload', {
+        const response = await fetch(`${DIR}/upload`, {
             method: 'POST',
             body: imageData,
         });

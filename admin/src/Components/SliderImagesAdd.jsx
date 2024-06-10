@@ -1,8 +1,12 @@
-import { useState } from "react"; 
+import { useContext, useState } from "react"; 
 import upload_area from '../assets/upload_area.svg';
+import { AdminContext } from "../Context/AdminContext";
  
 
 const SliderImagesAdd = () => {
+    const {DIR} = useContext(AdminContext);
+
+
     const [image, setImage] = useState(null); 
     const [sliderImageData, setSliderImageData] = useState({
       title: "", 
@@ -24,7 +28,7 @@ const SliderImagesAdd = () => {
       let formData = new FormData();
       formData.append('image', image);
   
-      await fetch('http://localhost:4000/upload', {
+      await fetch(`${DIR}/upload`, {
         method: 'POST',
         body: formData,
       }).then(res => res.json()).then((data) => {
@@ -40,7 +44,7 @@ const SliderImagesAdd = () => {
           image: responseData.image_url, 
         };
   
-        await fetch('http://localhost:4000/sliderimageadd', {
+        await fetch(`${DIR}/sliderimageadd`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

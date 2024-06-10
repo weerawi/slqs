@@ -1,16 +1,14 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";  
 import { MdDelete } from "react-icons/md";
+import { AdminContext } from "../Context/AdminContext";
 
 const UsersList = () => {
-
-    
-     
-
+    const {DIR} = useContext(AdminContext);
     const [userData, setUserData] = useState([]);
 
     const fetchInfo = async() => {
-        await fetch('http://localhost:4000/allusers')
+        await fetch(`${DIR}/allusers`)
         .then((res)=>res.json())
         .then((data)=>setUserData(data))
     }
@@ -21,7 +19,7 @@ const UsersList = () => {
 
 
     const removeProduct = async(id) => {
-        await fetch(`http://localhost:4000/removeuser`,{
+        await fetch(`${DIR}/removeuser`,{
             method:'POST',
             headers:{
                 Accept:'application/json',

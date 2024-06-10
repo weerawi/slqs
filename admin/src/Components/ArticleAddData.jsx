@@ -1,8 +1,12 @@
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import upload_area from '../assets/upload_area.svg';
+import { AdminContext } from '../Context/AdminContext';
 
 const ArticleAddData = () => {
+
+  const {DIR} = useContext(AdminContext)
+
     const [image, setImage] = useState(null);
      
     const [articleDataDetails, setArticleDataDetails] = useState({
@@ -25,7 +29,7 @@ const ArticleAddData = () => {
       let formData = new FormData();
       formData.append('image', image);
   
-      await fetch('http://localhost:4000/upload', {
+      await fetch(`${DIR}/upload`, {
         method: 'POST',
         body: formData,
       }).then(res => res.json()).then((data) => {
@@ -42,7 +46,7 @@ const ArticleAddData = () => {
           image: responseData.image_url, 
         };
   
-        await fetch('http://localhost:4000/articleaddproducts', {
+        await fetch(`${DIR}/articleaddproducts`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

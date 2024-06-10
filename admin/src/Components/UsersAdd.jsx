@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AdminContext } from "../Context/AdminContext";
 
 const UsersAdd = () => {
+    const {DIR} = useContext(AdminContext);
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -19,7 +22,7 @@ const UsersAdd = () => {
       ...userData,
     };
 
-    await fetch('http://localhost:4000/addusers', {
+    await fetch(`${DIR}/addusers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

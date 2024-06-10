@@ -1,17 +1,18 @@
-import { useState } from "react"; 
+import { useContext, useState } from "react"; 
 import { useEffect } from "react";
 
 import { MdDelete } from "react-icons/md";
+import { AdminContext } from "../Context/AdminContext";
  
 
 const ContactDetails = () => {
-   
-     
+    
+    const {DIR} = useContext(AdminContext);
 
     const [contactUs, setContactUs] = useState([]);
 
     const fetchInfo = async() => {
-        await fetch('http://localhost:4000/allcontacts')
+        await fetch(`${DIR}/allcontacts`)
         .then((res)=>res.json())
         .then((data)=>setContactUs(data))
     }
@@ -22,7 +23,7 @@ const ContactDetails = () => {
 
 
     const removeProduct = async(id) => {
-        await fetch(`http://localhost:4000/removecontact`,{
+        await fetch(`${DIR}/removecontact`,{
             method:'POST',
             headers:{
                 Accept:'application/json',

@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
+import { AdminContext } from "../Context/AdminContext";
 
 const ArticleListData = () => {
+
+    const {DIR} = useContext(AdminContext)
+
+
     const [articleAllData, setArticleAllData] = useState([]);
     const [editingProductId, setEditingProductId] = useState(null);
     const [editingProductData, setEditingProductData] = useState({});
 
     const fetchInfo = async () => {
         try {
-            const response = await fetch('http://localhost:4000/articlealldata');
+            const response = await fetch(`${DIR}/articlealldata`);
             const data = await response.json();
             setArticleAllData(data);
         } catch (error) {
@@ -22,7 +27,7 @@ const ArticleListData = () => {
 
     const removeProduct = async (id) => {
         try {
-            await fetch('http://localhost:4000/removearticledata', {
+            await fetch(`${DIR}/removearticledata`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -48,7 +53,7 @@ const ArticleListData = () => {
 
     const saveProductHandler = async () => {
         try {
-            const response = await fetch('http://localhost:4000/articleupdateproducts', {
+            const response = await fetch(`${DIR}/articleupdateproducts`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +83,7 @@ const ArticleListData = () => {
         const imageData = new FormData();
         imageData.append('image', file);
 
-        const response = await fetch('http://localhost:4000/upload', {
+        const response = await fetch(`${DIR}/upload`, {
             method: 'POST',
             body: imageData,
         });

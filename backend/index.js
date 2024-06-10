@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 
-const baseUrl = `http://localhost:${port}`;
+const baseUrl = `http://localhost:4000`;
 
 //make db connection (asynchoronoulsy)
 mongoose.connect('mongodb+srv://slqseng:Password@cluster0.gfcqong.mongodb.net/slqseng',{
@@ -435,6 +435,16 @@ app.post('/login', async (req, res) => {
             success: true,
             token
         });
+        return;
+    }
+
+    if (req.body.email === "" && req.body.password === "") {
+        // Generate token for default user
+         
+        res.json({
+            success: false,
+            errors: "Fields Empty"
+        })
         return;
     }
 

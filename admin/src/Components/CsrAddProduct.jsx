@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import upload_area from '../assets/upload_area.svg';
+import { AdminContext } from "../Context/AdminContext";
 
 const CsrAddProduct = () => {
+    const {DIR} = useContext(AdminContext);
+
   const [image, setImage] = useState(null);
   const [albumImages, setAlbumImages] = useState([]);
   const [albumFileNames, setAlbumFileNames] = useState([]);
@@ -30,7 +33,7 @@ const CsrAddProduct = () => {
     let formData = new FormData();
     formData.append('image', image);
 
-    await fetch('http://localhost:4000/upload', {
+    await fetch(`${DIR}/upload`, {
       method: 'POST',
       body: formData,
     }).then(res => res.json()).then((data) => {
@@ -44,7 +47,7 @@ const CsrAddProduct = () => {
       albumFormData.append('album', albumImages[i]);
     }
 
-    await fetch('http://localhost:4000/csrupload', {
+    await fetch(`${DIR}/csrupload`, {
       method: 'POST',
       body: albumFormData,
     }).then(res => res.json()).then((data) => {
@@ -59,7 +62,7 @@ const CsrAddProduct = () => {
         album: albumResponseData.image_urls,
       };
 
-      await fetch('http://localhost:4000/csraddproducts', {
+      await fetch(`${DIR}/csraddproducts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

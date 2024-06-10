@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react"; 
+import { useContext, useEffect, useState } from "react"; 
 import { MdDelete } from "react-icons/md";
+import { AdminContext } from "../Context/AdminContext";
 
 
 const CsrListProduct = () => {
+    const {DIR} = useContext(AdminContext);
+
     const [csrAllProducts, setCsrAllProducts] = useState([]);
     const [editingProductId, setEditingProductId] = useState(null);
     const [editingProductData, setEditingProductData] = useState({});
 
     const fetchInfo = async () => {
-        await fetch('http://localhost:4000/csrallproducts')
+        await fetch(`${DIR}/csrallproducts`)
             .then((res) => res.json())
             .then((data) => setCsrAllProducts(data));
     };
@@ -18,7 +21,7 @@ const CsrListProduct = () => {
     }, []);
 
     const removeProduct = async (id) => {
-        await fetch('http://localhost:4000/removecsrproduct', {
+        await fetch(`${DIR}/removecsrproduct`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -40,7 +43,7 @@ const CsrListProduct = () => {
     };
 
     const saveProductHandler = async () => {
-        await fetch('http://localhost:4000/csrupdateproduct', {
+        await fetch(`${DIR}/csrupdateproduct`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +70,7 @@ const CsrListProduct = () => {
         const imageData = new FormData();
         imageData.append('image', file);
 
-        const response = await fetch('http://localhost:4000/upload', {
+        const response = await fetch(`${DIR}/upload`, {
             method: 'POST',
             body: imageData,
         });

@@ -1,8 +1,12 @@
-import { useState } from "react"; 
+import { useContext, useState } from "react"; 
 import upload_area from '../assets/upload_area.svg';
+import { AdminContext } from "../Context/AdminContext";
  
 
 const GalAddProduct = () => {
+
+    const {DIR} = useContext(AdminContext);
+
     const [image, setImage] = useState(null);
     const [albumImages, setAlbumImages] = useState([]);
     const [albumFileNames, setAlbumFileNames] = useState([]);
@@ -30,7 +34,7 @@ const GalAddProduct = () => {
       let formData = new FormData();
       formData.append('image', image);
   
-      await fetch('http://localhost:4000/upload', {
+      await fetch(`${DIR}/upload`, {
         method: 'POST',
         body: formData,
       }).then(res => res.json()).then((data) => {
@@ -44,7 +48,7 @@ const GalAddProduct = () => {
         albumFormData.append('album', albumImages[i]);
       }
   
-      await fetch('http://localhost:4000/galupload', {
+      await fetch(`${DIR}/galupload`, {
         method: 'POST',
         body: albumFormData,
       }).then(res => res.json()).then((data) => {
@@ -59,7 +63,7 @@ const GalAddProduct = () => {
           album: albumResponseData.image_urls,
         };
   
-        await fetch('http://localhost:4000/galaddproducts', {
+        await fetch(`${DIR}/galaddproducts`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
