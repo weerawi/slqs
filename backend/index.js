@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(cors());
 
 
+const baseUrl = `http://localhost:${port}`;
+
 //make db connection (asynchoronoulsy)
 mongoose.connect('mongodb+srv://slqseng:Password@cluster0.gfcqong.mongodb.net/slqseng',{
     useNewUrlParser: true,
@@ -45,7 +47,7 @@ const Storage = multer.diskStorage({
   app.post('/upload', upload.single('image'), (req, res) => {
     res.json({
       success: 1,
-      image_url: `http://localhost:${port}/images/${req.file.filename}`
+      image_url: `${baseUrl}/images/${req.file.filename}`
     });
   });
 
@@ -66,7 +68,7 @@ const csrupload = multer({ storage: csrStorage });
 app.use('/csrimages', express.static('csr/csrimages'));
 
 app.post("/csrupload", csrupload.array('album', 30), (req, res) => {
-    const image_urls = req.files.map(file => `http://localhost:${port}/csrimages/${file.filename}`);
+    const image_urls = req.files.map(file => `${baseUrl}/csrimages/${file.filename}`);
     res.json({
         success: 1,
         image_urls: image_urls
@@ -171,7 +173,7 @@ const galleryupload = multer({ storage: galleryStorage });
 app.use('/galimages',express.static('gallery/galimages'))
 
 app.post("/galupload", galleryupload.array('album',30), (req, res) => { 
-    const image_urls = req.files.map(file => `http://localhost:${port}/galimages/${file.filename}`);
+    const image_urls = req.files.map(file => `${baseUrl}/galimages/${file.filename}`);
     res.json({
         success: 1,
         image_urls: image_urls
@@ -278,7 +280,7 @@ app.use('/articleimages',express.static('/article/articleimages'));
 app.post("/articleupload", articleupload.single('image'), (req, res) => {
     res.json({
         success: 1,
-        image_urls: `http://localhost:${port}/articleimages/${req.file.filename}`
+        image_urls: `${baseUrl}/articleimages/${req.file.filename}`
     });
 });
 

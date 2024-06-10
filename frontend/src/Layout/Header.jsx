@@ -54,7 +54,7 @@ const Header = () => {
               boxShadow: isFixed? " rgba(255,255,255, 0.55) 0px -4px 10px 0px inset":'',
           
       }}
-       className={isFixed? 'my-2 py-5 rounded-full px-5' : 'py-3'}
+       className={` rounded-full ${ isFixed ? 'my-2 py-5 px-5' : 'py-3 '}`}
        >
             <Navbar/>
         </div>
