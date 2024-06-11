@@ -58,8 +58,7 @@ import { MdCall, MdEmail ,MdLocationOn} from "react-icons/md";
 
 import {
   TiSocialLinkedin,
-  TiSocialFacebook,
-  TiSocialTwitter,
+  TiSocialFacebook, 
   TiSocialInstagram,
 } from "react-icons/ti";
 
@@ -87,7 +86,9 @@ const Footer = () => {
            
              
             <div className="md:flex justify-between items-center hidden ">
-              <div>
+              <div data-aos="zoom-in-up"
+                data-aos-delay="200"
+                data-aos-duration="800">
                 <img src={logo} className="rounded-md" alt="" width={50}/>
               </div>
               
@@ -98,21 +99,37 @@ const Footer = () => {
 
             <div className="">
               <div>
-                <a href="tel:+96550480958" 
+                <a 
+                data-aos="fade-up"
+                data-aos-delay="100"
+                data-aos-duration="800"
+                  href="tel:+96550480958" 
                   className='rounded-2xl group p-3 gap-2 w-96 flex items-center'>
                   <MdCall className='text-xl group-hover:animate-pulse' /> +965 504 80958
                 </a>
 
-                <a href="mailto:secretary@slqs-eng-kuwait.org" 
+                <a 
+                data-aos="fade-up"
+                data-aos-delay="200"
+                data-aos-duration="800"
+                 href="mailto:secretary@slqs-eng-kuwait.org" 
                   className='rounded-2xl group p-3 gap-2 w-96 flex items-center'>
                   <MdEmail className='text-xl group-hover:animate-pulse'/> secretary@slqs-eng-kuwait.org
                 </a>
-                <a href="https://www.google.com/maps?q=Kuwait+City,+Kuwait" target="_blank" rel="noopener noreferrer" 
+                <a
+                data-aos="fade-up"
+                data-aos-delay="300"
+                data-aos-duration="800"
+                 href="https://www.google.com/maps?q=Kuwait+City,+Kuwait" target="_blank" rel="noopener noreferrer" 
                 className='rounded-2xl group p-3 gap-2 w-96 flex items-center'>
                   <MdLocationOn className='text-xl group-hover:animate-pulse'/> Kuwait City, Kuwait
                 </a>
 
-                <div className="flex items-center mt-4 text-xl space-x-4 sm:mt-0 p-3">
+                <div
+                data-aos="fade-up"
+                data-aos-delay="400"
+                data-aos-duration="800"
+                 className="flex items-center mt-4 text-xl space-x-4 sm:mt-0 p-3">
 
                 {/* <div className="flex gap-4 pt-3 text-xl"> */}
                   <a href="https://www.facebook.com/yourpage">
