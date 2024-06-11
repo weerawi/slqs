@@ -6,7 +6,7 @@ import {
   TiSocialInstagram,
 } from "react-icons/ti";
 import { LiaAngleDoubleUpSolid } from "react-icons/lia";
-import profile from '../Components/Assets/profile.png'
+import profile from '../Components/Assets/top_1.jpg'
 import PageTitle from '../Components/PageTitle';
 import committeeimg from '../Components/Assets/top_1.jpg'
 
@@ -25,26 +25,32 @@ function Committee() {
       data-aos-duration="1000"
     >
 
+    <div style={{
+          backgroundImage:`url(${profile})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
+         }} className='w-[250px] h-[250px] rounded-xl border-4 border-gray-100 shadow-md shadow-gray-600 cursor-pointer hover:scale-105 transition-all duration-500'> 
 
-     <div style={{
-      backgroundImage:`url(${profile})`,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat'
-     }} className='w-[250px] h-[250px]'> 
+      <div style={{
+        // background:'rgba(0,0,0,0.5)',
+        // backdropFilter:'blur(10px)'
+      }} className='w-full h-full group rounded-xl bg-[rgba(0,0,0,0.5)] hover:bg-transparent transition-all duration-500 backdrop-blur-sm hover:backdrop-blur-none '>
 
-     <div className=''>
+        <div className='absolute bottom-1 flex flex-col items-start  p-3 pt-10 text-gray-100 '>
 
-        <div>
-        {member.name}
-
+            <div className='w-full transition-all duration-300 text-xl tracking-wide uppercase group-hover:bg-[rgba(112,0,0,0.8)] px-5 rounded-full group-hover:backdrop-blur-lg'>
+            {member.name} 
+            </div>
+            <div className= 'w-full mt-3 text-base tracking-widest font-bold group-hover:bg-[rgba(112,0,0,0.8)] px-5 rounded-full group-hover:backdrop-blur-lg'>
+            {member.position}
+            </div>
+            
         </div>
-        <div>
-        {member.position}
-        </div>
-        
-     </div>
 
-     </div>
+      </div>
+    </div>
+
+     
       {/* <div
         className="  transform transition-transform duration-500   cursor-pointer shadow-gray-600 shadow-lg rounded-full overflow-hidden 
         w-[250px] h-[250px] "
