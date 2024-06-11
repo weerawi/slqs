@@ -9,7 +9,7 @@ const GalleryCard = (props) => {
     data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1000"
      className='hover:scale-105 transition-all duration-500 pb-10 '>
       <div 
-        className={`w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 transition-shadow duration-500 rounded-xl   ${isHovered ? 'shadow-lg' : ''}`}
+        className={`w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 hover:scale-105 transition-all duration-500 rounded-xl   ${isHovered ? 'shadow-lg' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
@@ -19,7 +19,7 @@ const GalleryCard = (props) => {
         }}
       >
         <Link to={`/gallery/${props.id}`}>
-          <img className="w-full h-full rounded-xl" src={props.image} alt="Image" />
+          <img className="  rounded-xl w-full h-full object-cover" src={props.image} alt="Image" />
           
           
           
