@@ -132,7 +132,7 @@ const Footer = () => {
                  className="flex items-center mt-4 text-xl space-x-4 sm:mt-0 p-3">
 
                 {/* <div className="flex gap-4 pt-3 text-xl"> */}
-                  <a href="https://www.facebook.com/yourpage">
+                  <a href="https://www.facebook.com/SLQSEngKuwait/">
                     <TiSocialFacebook className="text-2xl hover:text-blue-600" />
                   </a>
                   <a href="https://twitter.com/yourpage">
